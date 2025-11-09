@@ -1,3 +1,32 @@
+<?php
+$insert = false;
+if (isset($_POST['name'])) { 
+  $server = "localhost";
+  $username = "root";
+  $password = "";
+  $database = "website";
+
+  $con = mysqli_connect($server, $username, $password,$database);  
+  if (!$con) {
+    die("connection to this database failed due to" . mysqli_connect_error());
+  }
+
+  $name = $_POST['name'];
+  $email = $_POST['_replyto'];
+  $phone = $_POST['mobile'];
+  $subject = $_POST['subject'];
+  $message = $_POST['message'];
+  $sql = "INSERT INTO `website`.`website` (`name`, `email`, `phone`, `subject`, `message`) VALUES ('$name', '$email', '$phone', '$subject', '$message');";
+  if ($con->query($sql) == true) {
+    $insert = true;
+  } else {
+    echo "error: $sql <br> $con->error";
+  }
+  $con->close();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,22 +85,22 @@
             <div class="professional-box">
 
                 <div class="profession" style="--i:0">
-                    <i class='bxr  bx-code-alt'>
+                    <i class='bx bx-code-alt'>
                         <h3>Web Developer</h3>
                     </i>
                 </div>
                 <div class="profession" style="--i:1">
-                    <i class='bxr  bx-code-alt'>
+                    <i class='bx bx-code-alt'>
                         <h3>UI/UX Designer</h3>
                     </i>
                 </div>
                 <div class="profession" style="--i:2">
-                    <i class='bxr  bx-code-alt'>
+                    <i class='bx bx-code-alt'>
                         <h3>Graphic Designer</h3>
                     </i>
                 </div>
                 <div class="profession" style="--i:3">
-                    <i class='bxr  bx-code-alt'>
+                    <i class='bx bx-code-alt'>
                         <h3>Content Creator</h3>
                     </i>
                 </div>
@@ -137,7 +166,13 @@
                 - action: replace "your-form-id" with your actual Formspree form ID
                 - method: POST to send form data
             -->
-            <form action="https://formspree.io/f/your-form-id" method="POST">
+                <?php
+if ($insert) {
+  echo "<p style='color:green;'>Your message has been submitted successfully!</p>";
+}
+?>
+
+            <form action="" method="POST">
 
                 <!-- Grouped inputs for layout -->
                 <div class="inputs">
@@ -160,7 +195,7 @@
                 <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
 
                 <!-- Submit button -->
-                <button type="submit">Send Message</button>
+                <button   type="submit" >Send Message</button>
             </form>
             <!-- End of form -->
         </div>

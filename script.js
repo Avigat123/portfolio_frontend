@@ -1,6 +1,4 @@
 
-
-
 //dark light mode toggle
 let darkModeIcon = document.querySelector('#dark-mode-icon');
 darkModeIcon.onclick = () =>{
@@ -57,6 +55,7 @@ ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
 ScrollReveal().reveal('.home-img, .services-container, .portfolio-box, .contact form', { origin: 'bottom' });
 ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
 ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });  
+// ScrollReveal().reveal('.the-projects',{ origin: left});
 
 
 //menu icon toggle
@@ -120,3 +119,32 @@ data.skills.forEach(skill => {
 
     container.appendChild(div);
 });
+
+
+
+// ScrollReveal for projects section
+ScrollReveal().reveal('.the-projects .heading, .the-projects h1', {
+  origin: 'top',
+  distance: '60px',
+  duration: 1000,
+  delay: 200
+});
+
+ScrollReveal().reveal('.project-box', {
+  origin: 'bottom',
+  distance: '80px',
+  duration: 1200,
+  delay: 300,
+  interval: 200 //
+});
+
+ScrollReveal().reveal('.project-box', {
+  origin: 'bottom',
+  distance: '50px',
+  duration: 1000,
+  easing: 'ease-in-out',
+  opacity: 0,
+  scale: 0.85, 
+  interval: 200,
+});
+
